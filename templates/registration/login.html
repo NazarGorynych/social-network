@@ -5,11 +5,9 @@ Login
 {% load widget_tweaks %}
 
 {% block body %}
-    {% block header %}
-    {% endblock %}
     <div class="main align-items-center" >
         <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="card" style="border-radius: 1rem; border-color: #c7c7c7; margin: 10%; width: 35%;">
+            <div class="card" style="border-radius: 1rem; border-color: #c7c7c7; margin: 5%; width: 35%;">
                 <div class="d-flex justify-content-center" style="margin: 10%;">
                     <div class="col-8"  style=" flex: auto; justify-content: center">
                         <form method="post" action="{% url 'login' %}">

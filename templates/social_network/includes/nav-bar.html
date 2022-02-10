@@ -7,13 +7,21 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'data-scheme' %}">Posts</a>
+          <a class="nav-link active" aria-current="page" href="">Posts</a>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'data-sets' %}">People</a>
+          <a class="nav-link active" aria-current="page" href="">People</a>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'new-post' %}">New post</a>
       </ul>
-        <span class="navbar-text" >Hello, &nbsp</span>
-        <span class="navbar-text" style="font-weight: bold">{{ user.username }} &nbsp</span>
-        <span class="navbar-text"><a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Logout</a></span>
+        {% if user.username %}
+            <span class="navbar-text" >Hello &nbsp</span>
+            <span class="navbar-text" style="font-weight: bold">{{ user.username }} &nbsp</span>
+            <span class="navbar-text"><a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Logout</a></span>
+        {% else %}
+            <span class="navbar-text"><a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a></span>
+            <span class="navbar-text"><a class="nav-link active" aria-current="page" href="{% url 'signup' %}">Signup</a></span>
+
+        {% endif %}
     </div>
   </div>
 </nav>

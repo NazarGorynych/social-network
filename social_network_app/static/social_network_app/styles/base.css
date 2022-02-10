@@ -13,16 +13,17 @@ body {
   margin-right: 0;
 }
 
-table tbody tr th::before {
-    counter-increment: section;
-    content: "Section " counter(section);
-}
+/*table tbody tr th::before {*/
+/*    counter-increment: section;*/
+/*    content: "Section " counter(section);*/
+/*}*/
 
-table tbody tr th::before {
-    content: counter(section);
-}
+/*table tbody tr th::before {*/
+/*    content: counter(section);*/
+/*}*/
 
 .actv {
     background: grey;
     color: black;
 }
+
