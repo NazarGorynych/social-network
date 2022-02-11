@@ -13,6 +13,9 @@ body {
   margin-right: 0;
 }
 
+*a:hover {
+    color: #bacfef;
+}
 /*table tbody tr th::before {*/
 /*    counter-increment: section;*/
 /*    content: "Section " counter(section);*/

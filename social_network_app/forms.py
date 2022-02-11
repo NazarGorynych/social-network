@@ -8,4 +8,4 @@ class PostForm(ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
-        exclude = ['author', ]
+        exclude = ['author', 'num_likes']
