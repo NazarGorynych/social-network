@@ -11,7 +11,7 @@ Sign Up
             <div class="card" style="border-radius: 1rem; border-color: #c7c7c7; margin: 5%; width: 35%;">
                 <div class="d-flex justify-content-center" style="margin: 10%;">
                     <div class="col-8"  style=" flex: auto; justify-content: center">
-                        <form method="post" action="{% url 'login' %}">
+                        <form method="post">
                             <h2 style="text-align: center" class="fw-light">Sign Up</h2>
                         {% csrf_token %}
 {#                            {{ form.as_p }}#}

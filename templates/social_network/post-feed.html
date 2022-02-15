@@ -16,15 +16,18 @@ Post feed
                     <p>{{ post.text }}</p>
                 </div>
                 <div class="p-3">
-                <form action="{% url 'like_post' post.pk %}" method="post">
                     <a>{{ post.total_likes }}</a>
-                    {% csrf_token %}
-                    {% if post.num_likes.exists %}
-                    <button class="btn-sm btn-primary">Dislike</button>
+                    {% if post.dislike_check %}
+                    <form action="{% url 'dislike_post' post.pk %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn-sm btn-primary" type="submit">Dislike</button>
+                    </form>
                     {% else %}
-                    <button class="btn-sm btn-primary" type="submit" name="post_id" value="{{ post.id }}">Like</button>
+                    <form action="{% url 'like_post' post.pk %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn-sm btn-primary" type="submit">Like</button>
+                    </form>
                     {% endif %}
-                </form>
                 <p class="h8" style="float: right; margin-top: -20px">Author: <a class="link-primary text-decoration-none h6" href="">{{ post.author }}</a></p>
                 </div>
             </div>
