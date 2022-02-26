@@ -16,7 +16,8 @@ Post feed
                     <p>{{ post.text }}</p>
                 </div>
                 <div class="p-3">
-                    <a>{{ post.total_likes }}</a>
+
+                    <a>Likes: {{ post.total_likes }}</a>
                     {% if post.dislike_check %}
                     <form action="{% url 'dislike_post' post.pk %}" method="post">
                         {% csrf_token %}

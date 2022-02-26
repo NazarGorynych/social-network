@@ -6,6 +6,10 @@ from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from social_network_app.current_user import get_current_user
 from django.contrib.messages.views import SuccessMessageMixin
+from .serializers import *
+from rest_framework import viewsets, permissions, renderers
+from rest_framework.response import Response
+from rest_framework.decorators import action
 
 
 def index(request):
@@ -37,16 +41,6 @@ class PostFeedView(ListView):
     context_object_name = 'all_posts'
     queryset = Post.objects.all()
 
-    # def get_context_data(self, *, object_list=None, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     dislike_check = []
-    #     current_user = self.request.user
-    #     for post in self.object_list:
-    #         bool_query = Post.objects.filter(num_likes=current_user).exists()
-    #         dislike_check.append(bool_query)
-    #     context['dislike_check'] = dislike_check
-    #     return super().get_context_data()
-
 
 def dislike_post(request, pk):
     post = get_object_or_404(Post, id=pk)
@@ -58,3 +52,15 @@ def like_post(request, pk):
     post = get_object_or_404(Post, id=pk)
     post.num_likes.add(request.user)
     return HttpResponseRedirect(reverse('post-feed'))
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
