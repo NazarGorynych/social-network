@@ -1,4 +1,4 @@
-from .models import Post, User
+from social_network_app.models import Post, User
 from rest_framework import serializers
 
 

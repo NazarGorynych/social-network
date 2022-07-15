@@ -1,15 +1,11 @@
-from .models import Post, User
 from .forms import PostForm, UserRegisterForm
 from django.views.generic import CreateView, ListView, FormView
-from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_or_404
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from social_network_app.current_user import get_current_user
 from django.contrib.messages.views import SuccessMessageMixin
-from .serializers import *
-from rest_framework import viewsets, permissions, renderers
-from rest_framework.response import Response
-from rest_framework.decorators import action
+from api.serializers import *
 
 
 def index(request):
@@ -53,14 +49,3 @@ def like_post(request, pk):
     post.num_likes.add(request.user)
     return HttpResponseRedirect(reverse('post-feed'))
 
-
-class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
-
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
-
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
